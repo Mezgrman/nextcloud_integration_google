@@ -513,7 +513,9 @@ class GoogleDriveAPIService {
 		}
 
 		$extension = pathinfo($fileName, PATHINFO_EXTENSION);
-		$name = pathinfo($fileName, PATHINFO_FILENAME) . '_' . substr($fileItem['id'], -6);
+		
+		// Don't append the ID. This will break if your Google Drive contains multiple files with the same name!
+		$name = pathinfo($fileName, PATHINFO_FILENAME);
 
 		return strlen($extension) ? $name . '.' . $extension : $name;
 	}
